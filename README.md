@@ -5,6 +5,8 @@ Sparkles for your X11 desktop.<br>
 - Fully transparent overlay; shouldn't steal any input
 - Lightweight and whimsical
 
+![](https://imgur.com/wWs5nPy.png)
+
 ## Install
 Enable the script (replace the path with wherever you put it).
 ```
