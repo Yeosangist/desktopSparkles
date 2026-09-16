@@ -40,4 +40,5 @@ systemctl --user restart desktop-sparkles
 
 ## Notes
 I love free will.<br>
-Probably only works on X11. Wayland is fussy about stuff like this.
+Probably only works on X11. Wayland is fussy about stuff like this.<br>
+Drop a star if you like it? I just wanna know people are enjoying it.
