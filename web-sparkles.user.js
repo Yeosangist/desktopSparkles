@@ -7,6 +7,7 @@
 // @match        *://*/*
 // @updateURL    https://github.com/Yeosangist/desktopSparkles/blob/main/web-sparkles.user.js
 // @downloadURL  https://github.com/Yeosangist/desktopSparkles/blob/main/web-sparkles.user.js
+// @license      CC BY-NC-SA 4.0
 // @grant        none
 // ==/UserScript==
 
