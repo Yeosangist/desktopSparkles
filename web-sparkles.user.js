@@ -5,6 +5,8 @@
 // @description  Adds animated sparkle effects to any webpage
 // @author       Yeosangist
 // @match        *://*/*
+// @updateURL    https://github.com/Yeosangist/desktopSparkles/blob/main/web-sparkles.user.js
+// @downloadURL  https://github.com/Yeosangist/desktopSparkles/blob/main/web-sparkles.user.js
 // @grant        none
 // ==/UserScript==
 
