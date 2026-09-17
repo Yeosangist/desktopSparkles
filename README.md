@@ -1,5 +1,8 @@
-# Desktop Sparkles
-Sparkles for your X11 desktop.<br>
+# Sparkle suite
+This was initially limited to the desktop script, but I knew it wasn't the most accessible, so I turned it into a userJS script and an Android app too.<br><br>
+The Android app is 5MB and should be nothing on your RAM, but it does need the display over other apps permission. Works for version 5 and above, but only tested on 11.<br><br>
+The userJS script should straight up open your userscript manager if you click on the 'Raw'. A quirk that I have observed is that if you navigate away from a page but it stays in memory, when you come back to the page you get a whole BURST of stars, but they clear up pretty quickly, so hopefully it's not too irritating.<br><br>
+## Features
 - Five shapes of star
 - Editable size, number, frequency, and movement settings
 - Fully transparent overlay; shouldn't steal any input
@@ -40,5 +43,5 @@ systemctl --user restart desktop-sparkles
 
 ## Notes
 I love free will.<br>
-Probably only works on X11. Wayland is fussy about stuff like this.<br>
-Drop a star if you like it? I just wanna know people are enjoying it.
+The desktop script only works on X11. Wayland is fussy about stuff like this.<br>
+Drop a star if you like any of the versions? I just wanna know people are enjoying it.
