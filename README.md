@@ -1,7 +1,7 @@
 # Sparkle suite
 This was initially limited to the desktop script, but I knew it wasn't the most accessible, so I turned it into a userJS script and an Android app too.<br><br>
 The Android app is 5MB, done in Kotlin, and should be nothing on your RAM, but it does need the display over other apps permission. Works for version 5 and above, but only tested on 11.<br><br>
-The userJS script should straight up open your userscript manager if you click on the 'Raw'. A quirk that I have observed is that if you navigate away from a page but it stays in memory, when you come back to the page you get a whole BURST of stars, but they clear up pretty quickly, so hopefully it's not too irritating.<br><br>
+The userJS script should straight up open your userscript manager if you click on the 'Raw'.<br><br>
 ## Features
 - Five shapes of star
 - Editable size, number, frequency, and movement settings
