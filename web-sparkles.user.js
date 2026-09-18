@@ -240,9 +240,17 @@
     let stopped = false;
     let currentSparkleColor = 'white';
     let currentGlowColor = 'rgba(255, 255, 255, 0.8)';
+    let activeTimeouts = [];
+    let isInitialized = false;
 
     function initContainer() {
-        if (container) return;
+        if (container) {
+            // Clean up existing sparkles if container already exists
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            return;
+        }
         
         container = document.createElement('div');
         container.id = 'universal-sparkles-container';
@@ -314,7 +322,15 @@
         if (stopped) return;
         
         const delay = random(CONFIG.minDelay, CONFIG.maxDelay);
-        setTimeout(spawnSparkle, delay);
+        const timeoutId = setTimeout(() => {
+            // Remove from active timeouts when it fires
+            const index = activeTimeouts.indexOf(timeoutId);
+            if (index > -1) {
+                activeTimeouts.splice(index, 1);
+            }
+            spawnSparkle();
+        }, delay);
+        activeTimeouts.push(timeoutId);
     }
 
     // ============================================================
@@ -326,19 +342,58 @@
             stopped = false;
         }
         
+        // Clear any existing timeouts
+        activeTimeouts.forEach(id => clearTimeout(id));
+        activeTimeouts = [];
+        
         initContainer();
         
-        // Spawn initial batch
-        for (let i = 0; i < CONFIG.sparkleCount; i++) {
-            setTimeout(spawnSparkle, random(0, 2000));
+        // Only spawn initial batch if not already initialized
+        if (!isInitialized) {
+            isInitialized = true;
+            for (let i = 0; i < CONFIG.sparkleCount; i++) {
+                const timeoutId = setTimeout(() => {
+                    const index = activeTimeouts.indexOf(timeoutId);
+                    if (index > -1) {
+                        activeTimeouts.splice(index, 1);
+                    }
+                    spawnSparkle();
+                }, random(0, 2000));
+                activeTimeouts.push(timeoutId);
+            }
         }
     }
 
     function stop() {
         stopped = true;
+        
+        // Clear all pending timeouts
+        activeTimeouts.forEach(id => clearTimeout(id));
+        activeTimeouts = [];
+        
+        // Remove container
         if (container) {
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
             container.remove();
             container = null;
+        }
+        
+        isInitialized = false;
+    }
+
+    // ============================================================
+    // Page visibility handling
+    // ============================================================
+
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            // Page is hidden, stop sparkles to save resources
+            stop();
+        } else {
+            // Page is visible again, restart
+            start();
         }
     }
 
@@ -351,6 +406,12 @@
     } else {
         start();
     }
+
+    // Handle page visibility changes (bfcache, tab switching, etc.)
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Handle page unload
+    window.addEventListener('beforeunload', stop);
 
     // Expose for debugging and control
     window.universalSparkles = {
